@@ -8,7 +8,7 @@ public class Zanyatie {
     private int chasy;
     private String uchebniyGod;
 
-    public Zanyatie(int id, int prepodId, int gruppaId, int predmetId, int chasy, String uchebniyGod) {
+    public Zanyatie(int id, int prepodId, int gruppaId, int predmetId, int chasy, int anInt, String uchebniyGod) {
         this.id = id;
         this.prepodId = prepodId;
         this.gruppaId = gruppaId;

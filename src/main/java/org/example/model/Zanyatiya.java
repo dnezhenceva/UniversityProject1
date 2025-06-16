@@ -24,7 +24,7 @@ public class Zanyatiya {
                     rs.getInt("gruppa_id"),
                     rs.getInt("predmet_id"),
                     rs.getInt("chasy"),
-                    rs.getString("uchebniy_god")
+                    rs.getInt("chasy"), rs.getString("uchebniy_god")
             ));
         }
 
