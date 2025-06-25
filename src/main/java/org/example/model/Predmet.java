@@ -3,20 +3,18 @@ package org.example.model;
 public class Predmet {
     private int id;
     private String name;
-    private int kafedraId;
 
-    public Predmet(int id, String name, int kafedraId) {
+    public Predmet(int id, String name) {
         this.id = id;
         this.name = name;
-        this.kafedraId = kafedraId;
     }
+
+    public int getId() { return id; }
+    public String getName() { return name; }
+
 
     @Override
     public String toString() {
-        return "Predmet{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", kafedraId=" + kafedraId +
-                '}';
+        return "Предмет: " + name + " (id: " + id + ")";
     }
 }

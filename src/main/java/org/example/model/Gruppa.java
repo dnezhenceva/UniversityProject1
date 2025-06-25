@@ -9,11 +9,13 @@ public class Gruppa {
         this.name = name;
     }
 
+    public int getId() { return id; }
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
     @Override
     public String toString() {
-        return "Gruppa{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "Группа: " + name + " (id: " + id + ")";
     }
 }
