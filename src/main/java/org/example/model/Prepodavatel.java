@@ -2,27 +2,37 @@ package org.example.model;
 
 public class Prepodavatel {
     private int id;
-    private String fio;
+    private String familiya;
+    private String imya;
+    private String otchestvo;
     private String dolzhnost;
     private String uchenayaStepen;
     private int stazh;
 
-    public Prepodavatel(int id, String fio, String dolzhnost, String uchenayaStepen, int stazh) {
+    public Prepodavatel(int id, String familiya, String imya, String otchestvo, String dolzhnost, String uchenayaStepen, int stazh) {
         this.id = id;
-        this.fio = fio;
+        this.familiya = familiya;
+        this.imya = imya;
+        this.otchestvo = otchestvo;
         this.dolzhnost = dolzhnost;
         this.uchenayaStepen = uchenayaStepen;
         this.stazh = stazh;
     }
 
     public int getId() { return id; }
-    public String getFio() { return fio; }
-    public String getDolzhnost() { return dolzhnost; }
-    public String getUchenayaStepen() { return uchenayaStepen; }
-    public int getStazh() { return stazh; }
+    public String getFamiliya() { return familiya; }
+    public String getImya() { return imya; }
+    public String getOtchestvo() { return otchestvo; }
+//    public String getDolzhnost() { return dolzhnost; }
+//    public String getUchenayaStepen() { return uchenayaStepen; }
+//    public int getStazh() { return stazh; }
+
+    public String getFio() {
+        return familiya + " " + imya + " " + otchestvo;
+    }
 
     @Override
     public String toString() {
-        return fio + ", " + dolzhnost + ", " + uchenayaStepen + ", стаж: " + stazh;
+        return getFio() + ", " + dolzhnost + ", " + uchenayaStepen + ", стаж: " + stazh;
     }
 }

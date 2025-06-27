@@ -10,7 +10,7 @@ public class Predmet {
     }
 
     public int getId() { return id; }
-    public String getName() { return name; }
+    //public String getName() { return name; }
 
 
     @Override

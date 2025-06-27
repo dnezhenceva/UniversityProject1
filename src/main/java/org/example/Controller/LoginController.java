@@ -1,5 +1,6 @@
 package org.example.Controller;
 
+import org.example.db.DatabaseManager;
 import org.example.model.User;
 import org.example.model.Users;
 
@@ -9,7 +10,8 @@ import java.sql.SQLException;
 public class LoginController {
     private final Users users;
 
-    public LoginController(Connection connection) {
+    public LoginController() throws SQLException {
+        Connection connection = DatabaseManager.getInstance().getConnection();
         this.users = new Users(connection);
     }
 

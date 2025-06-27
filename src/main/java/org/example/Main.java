@@ -1,24 +1,19 @@
 package org.example;
-import org.example.model.Kafedra;
-import org.example.model.Kafedras;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
+import org.example.view.LoginView;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.SQLException;
 
-public class Main {
+public class Main extends Application {
+
     public static void main(String[] args) {
-        String url = "jdbc:mysql://127.0.0.1:3306/university";
-        String user = "root";
-        String password = "";
-
-        try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            Kafedras kafedras = new Kafedras(connection);
-            for (Kafedra k : kafedras.getAll()) {
-                System.out.println(k);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        launch(args);
+    }
+    @Override
+    public void start(Stage primaryStage) throws SQLException {
+        LoginView loginView = new LoginView();
+        loginView.show(primaryStage);
     }
 }

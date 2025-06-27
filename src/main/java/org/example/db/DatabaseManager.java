@@ -9,8 +9,8 @@ public class DatabaseManager {
     private Connection connection;
 
     private final String url = "jdbc:mysql://127.0.0.1:3306/university";
-    private final String username = "root"; // замени на свой
-    private final String password = "";     // замени на свой
+    private final String username = "root";
+    private final String password = "";
 
     private DatabaseManager() throws SQLException {
         try {

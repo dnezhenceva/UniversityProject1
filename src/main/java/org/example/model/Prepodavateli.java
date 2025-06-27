@@ -17,7 +17,9 @@ public class Prepodavateli {
             while (rs.next()) {
                 list.add(new Prepodavatel(
                         rs.getInt("id"),
-                        rs.getString("fio"),
+                        rs.getString("familiya"),
+                        rs.getString("imya"),
+                        rs.getString("otchestvo"),
                         rs.getString("dolzhnost"),
                         rs.getString("uchenaya_stepen"),
                         rs.getInt("stazh")
@@ -27,14 +29,16 @@ public class Prepodavateli {
         return list;
     }
 
-    public void add(String fio, String stepen, String dolzhnost, int stazh) throws SQLException {
-        String sql = "INSERT INTO prepodavatel (fio, uchenaya_stepen, dolzhnost, stazh) VALUES (?, ?, ?, ?)";
+    public void add(String familiya, String imya, String otchestvo, String stepen, String dolzhnost, int stazh) throws SQLException {
+        String sql = "INSERT INTO prepodavatel (familiya, imya, otchestvo, uchenaya_stepen, dolzhnost, stazh) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, fio);
-            stmt.setString(2, stepen);
-            stmt.setString(3, dolzhnost);
-            stmt.setInt(4, stazh);
+            stmt.setString(1, familiya);
+            stmt.setString(2, imya);
+            stmt.setString(3, otchestvo);
+            stmt.setString(4, stepen);
+            stmt.setString(5, dolzhnost);
+            stmt.setInt(6, stazh);
             stmt.executeUpdate();
         }
     }
@@ -52,7 +56,8 @@ public class Prepodavateli {
         List<String> nagruzkaList = new ArrayList<>();
         String sql = "SELECT predmet.name, raspred_nagruzka.vid, raspred_nagruzka.chasy " +
                 "FROM raspred_nagruzka " +
-                "JOIN predmet ON raspred_nagruzka.predmet_id = predmet.id " +
+                "JOIN predmet_nagruzka ON raspred_nagruzka.id = predmet_nagruzka.id_nagruzki " +
+                "JOIN predmet ON predmet.id = predmet_nagruzka.id_predmeta " +
                 "WHERE raspred_nagruzka.prepod_id = ?";
         try (Connection conn = DatabaseManager.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
