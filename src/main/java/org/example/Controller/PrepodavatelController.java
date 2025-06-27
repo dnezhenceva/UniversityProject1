@@ -1,34 +1,35 @@
 package org.example.Controller;
 
 import org.example.model.Prepodavatel;
+import org.example.model.Prepodavateli;
+import org.example.view.PrepodView;
 
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
 public class PrepodavatelController {
-    private final Connection connection;
+    private final PrepodView view;
+    private final Prepodavateli model;
 
-    public PrepodavatelController(Connection connection) {
-        this.connection = connection;
+    public PrepodavatelController(PrepodView view) {
+        this.view = view;
+        this.model = new Prepodavateli();
+    }
+
+    public List<String> getNagruzkaForPrepod(int prepodId) throws SQLException {
+        return model.getNagruzkaByPrepod(prepodId);
     }
 
     public List<Prepodavatel> getAllPrepodavateli() throws SQLException {
-        List<Prepodavatel> list = new ArrayList<>();
-        String query = "SELECT * FROM prepodavatel";
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-            while (rs.next()) {
-                list.add(new Prepodavatel(
-                        rs.getInt("id"),
-                        rs.getString("fio"),
-                        rs.getString("dolzhnost"),
-                        rs.getString("uchenaya_stepen"),
-                        rs.getInt("stazh"),
-                        rs.getInt("kafedra_id")
-                ));
-            }
-        }
-        return list;
+        return model.getAll();
+    }
+
+    public void addPrepodavatel(String familiya, String imya, String otchestvo,
+                                String stepen, String dolzhnost, int stazh) throws SQLException {
+        model.add(familiya, imya, otchestvo, stepen, dolzhnost, stazh);
+    }
+
+    public void deletePrepodavatel(int id) throws SQLException {
+        model.delete(id);
     }
 }

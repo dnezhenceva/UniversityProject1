@@ -1,31 +1,30 @@
 package org.example.Controller;
 
 import org.example.model.Predmet;
+import org.example.model.Predmety;
+import org.example.view.PredmetView;
 
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
 public class PredmetController {
-    private final Connection connection;
+    private final PredmetView view;
+    private final Predmety model;
 
-    public PredmetController(Connection connection) {
-        this.connection = connection;
+    public PredmetController(PredmetView view) {
+        this.view = view;
+        this.model = new Predmety();
     }
 
     public List<Predmet> getAllPredmeti() throws SQLException {
-        List<Predmet> list = new ArrayList<>();
-        String query = "SELECT * FROM predmet";
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-            while (rs.next()) {
-                list.add(new Predmet(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getInt("kafedra_id")
-                ));
-            }
-        }
-        return list;
+        return model.getAll();
+    }
+
+    public void addPredmet(String name) throws SQLException {
+        model.add(name);
+    }
+
+    public void deletePredmet(int id) throws SQLException {
+        model.delete(id);
     }
 }
